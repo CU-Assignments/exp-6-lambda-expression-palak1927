@@ -1,0 +1,48 @@
+import java.util.*;
+
+class Employee {
+    String name;
+    int age;
+    double salary;
+
+    Employee(String name, int age, double salary) {
+        this.name = name;
+        this.age = age;
+        this.salary = salary;
+    }
+
+    @Override
+    public String toString() {
+        return name + " - Age: " + age + ", Salary: " + salary;
+    }
+}
+
+public class EmployeeSorting {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        List<Employee> employees = new ArrayList<>();
+
+        System.out.print("Enter number of employees: ");
+        int n = sc.nextInt();
+        sc.nextLine(); 
+
+        for (int i = 0; i < n; i++) {
+            System.out.print("Enter name: ");
+            String name = sc.nextLine();
+            System.out.print("Enter age: ");
+            int age = sc.nextInt();
+            System.out.print("Enter salary: ");
+            double salary = sc.nextDouble();
+            sc.nextLine(); 
+
+            employees.add(new Employee(name, age, salary));
+        }
+
+        employees.sort((e1, e2) -> Double.compare(e1.salary, e2.salary));
+
+        System.out.println("\nSorted Employees by Salary:");
+        employees.forEach(System.out::println);
+
+        sc.close();
+    }
+}
